@@ -46,15 +46,4 @@ public class AddressBookNonMockTest {
         assertEquals(200, result.getStatusCodeValue());
     }
 
-    //	@Test
-//	public void addBuddy() throws Exception{
-//		AddressBook book = new AddressBook();
-//		book.setBookName("Book 2");
-//		ResponseEntity<String> result = this.restTemplate.postForEntity("http://localhost:" + port + "/addressbook", book , String.class);
-//		assertEquals(200, result.getStatusCodeValue());
-//		BuddyInfo buddy = new BuddyInfo("Rob", "23 HELLO Way", "1234567789");
-//		result = this.restTemplate.postForEntity("http://localhost:" + port + "/addressbook/"+book.getId()+"/BuddyInfo", buddy, String.class);
-//		assertEquals(200, result.getStatusCodeValue());
-//	}
-
 }
