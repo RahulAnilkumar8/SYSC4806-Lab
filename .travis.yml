@@ -3,6 +3,6 @@ deploy:
   skip_cleanup: true
   provider: heroku
   api-key: $HEROKU_API_KEY
-  app: lippep-spring-boot-test
+  app: addressbook-4806sysc
 before_install:
   - chmod +x mvnw
