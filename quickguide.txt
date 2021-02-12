@@ -1,0 +1,31 @@
+1. Run the AddressBookApplication file.
+2. Now we will add an AddressBook using postman and the following request url and json body. (feel free to use another tool ex. CURL, intellij)
+     POST
+     http://localhost:8080/addressbook
+     {
+         "bookName":"Address Book A"
+     }
+
+     // The bookName variable just gives the book a String name. It has no other specific meaning
+
+3. Now we can add a buddy to this addressbook using the following request url and body
+
+    POST
+    http://localhost:8080/addressbook/1/BuddyInfo
+    {
+    	"firstName": "Mable",
+        "address": "21 Kell street",
+        "phoneNumber": "1233455678"
+    }
+
+4. Add as many addressbooks and buddies as you like. After you can view them using the following GET requests
+    GET
+    http://localhost:8080/addressbooks      //endpoint using spring boot rest repositories. Provides information with links to individual nested fields
+    http://localhost:8080/addressbook       // custom endpoint to return json body with nested list as a json object (easier to see whats in the structure)
+
+5. View the addressbook GUI using thymeleaf templating by going to the following url in a web browser
+    http://localhost:8080/addressbook/{addressbook_id}      // Replace the addressbook_id field with the id of an addressbook you created
+
+6. Delete a buddy from the addressbook using the following request
+    DELETE
+    http://localhost:8080/addressBook/{addressbook_id}/BuddyInfo/{buddyinfo_id}

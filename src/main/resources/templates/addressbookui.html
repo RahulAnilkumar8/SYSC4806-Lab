@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>AddressBook</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1 th:Text="${addressbook.getBookName()}">"</h1>
+<table border="1">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Telephone</th>
+    </tr>
+    <tr th:each="buddy : ${addressbook.getBuddy()}">
+        <td th:text="${buddy.getId()}"></td>
+        <td th:text="${buddy.getFirstName()}"></td>
+        <td th:text="${buddy.getAddress()}"></td>
+        <td th:text="${buddy.getPhoneNumber()}"></td>
+    </tr>
+</table>
+</body>
+</html>
