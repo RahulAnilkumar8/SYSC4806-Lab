@@ -5,7 +5,7 @@ $(document).ready(function(){
 function writeBook() {
     let book = $('.bookName').val();
     $.ajax( {
-        url:"http://localhost:8080/addressbook",
+        url:"/addressbook",
         type:"POST",
         dataType:"application/json",
         contentType: "application/json",
@@ -22,7 +22,7 @@ function writeBuddy() {
     let address = $('.address').val();
     let pnumber = $('.pnumber').val();
     $.ajax( {
-        url:"http://localhost:8080/addressbook/" + book + "/BuddyInfo",
+        url:"/addressbook/" + book + "/BuddyInfo",
         type:"POST",
         dataType:"application/json",
         contentType: "application/json",
@@ -51,7 +51,7 @@ function getBuddyAddFields(){
 /* Function to display the addressbook and its buddies*/
 function readBook() {
     $.ajax({
-        url: "http://localhost:8080/addressbook",
+        url: "/addressbook",
     }).then(function(data) {
         $('.content').html("Books:");
         for (let i = 0; i < data.length; ++i){
