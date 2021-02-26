@@ -1,6 +1,7 @@
 package com.book.AddressBook;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -25,28 +26,52 @@ public class AddressBookController {
         return repository;
     }
 
-    /**
-     * Custom route to add an addressbook.
-     * This endpoint is accessed at http://localhost:8080/addressbook
-     * @param addressBook
-     * @return
-     */
-    @PostMapping("/addressbook")
-    @ResponseBody
-    public AddressBook createAddressBook(@RequestBody AddressBook addressBook){
-        return repository.save(addressBook);
+    @GetMapping("/")
+    public String getLandingPage(Model model) {
+        model.addAttribute("addbook", new AddressBook());
+        return "landingpage";
+    }
+
+    @GetMapping("/insertBuddyInfo/{bookid}")
+    public String InsertBuddyForm( @PathVariable  Long bookid, Model model) {
+        model.addAttribute("bookId", bookid);
+        model.addAttribute("buddy", new BuddyInfo());
+        return "insertBuddy";
     }
 
     /**
-     * Custom route to get an addressbook.To get the standard route provided by spring boot rest repositories
-     * use /addressbooks endpoint.
+     * Custom route to add an addressbook.
+     * This endpoint is accessed at http://localhost:8080/addressbook
      * @return
      */
-    @GetMapping(value = "/addressbook")
-    @ResponseBody
-    public List<AddressBook> getAllAddressBooks(){
-        return repository.findAll();
+    @PostMapping("/addaddressbook")
+    public String createAddressBook(@ModelAttribute AddressBook book, Model model){
+        repository.save(book);
+        model.addAttribute("book", book);
+        return "bookList";
     }
+
+    /**
+     * Custom route to add a buddy to an addressbook
+     * @param buddyInfo
+     * @param id
+     * @return
+     */
+    @PostMapping("/addressbook/buddyInput/{id}")
+    public String addBuddy(@ModelAttribute BuddyInfo buddyInfo, @PathVariable Long id, Model model){
+        AddressBook book = repository.findById(id).get();
+        if(book != null){
+            System.out.println(buddyInfo.toString());
+            book.addBuddy(buddyInfo);
+            repository.save(book);
+            model.addAttribute("addressbook", book);
+            return "addressbookui";
+        }
+        else{
+            return "viewBook";
+        }
+    }
+
 
     /**
      * Route to access the template page for an added address book.
@@ -59,6 +84,31 @@ public class AddressBookController {
         AddressBook book = repository.findById(id).get();
         model.addAttribute("addressbook", book);
         return "addressbookui";
+    }
+
+
+    /**
+     * Custom route to get an addressbook.To get the standard route provided by spring boot rest repositories
+     * use /addressbooks endpoint.
+     * @return
+     */
+    @GetMapping(value = "/addressbook")
+    @ResponseBody
+    public List<AddressBook> getAllAddressBooks(){
+        return repository.findAll();
+    }
+
+
+    /**
+     * Custom route to add an addressbook.
+     * This endpoint is accessed at http://localhost:8080/addressbook
+     * @param addressBook
+     * @return
+     */
+    @PostMapping(path="/addressbook", produces=MediaType.APPLICATION_JSON_VALUE,consumes= MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public AddressBook createAddressBook(@RequestBody AddressBook addressBook){
+        return repository.save(addressBook);
     }
 
     /**

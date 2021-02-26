@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>AddressBook Landing Page</title>
+</head>
+<body>
+<h1 >Create an Address Book</h1>
+
+<form action="#" th:action="@{/addaddressbook}" th:object="${addbook}" method="post">
+    <p>Book Name: <input type="text" th:field="*{bookName}"/></p>
+    <p><input type="submit" value="Create An Address Book"/> <input type="reset" value="Reset"/></p>
+</form>
+</body>
+</html>

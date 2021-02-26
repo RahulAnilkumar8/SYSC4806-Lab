@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<h1>AddressBook Created! <h1>
+<table border="1">
+    <tr>
+        <th>Book Name</th>
+        <th>Id</th>
+    </tr>
+    <tr >
+        <td th:text="${book.getBookName()}"></td>
+        <td th:text="${book.getId()}"></td>
+    </tr>
+</table>
+<form action="#" th:action="@{/insertBuddyInfo/} + ${book.getId()}"  method="get">
+    <p><input type="submit" value="Add a new buddy"/></p>
+</form>
+</body>
+</html>

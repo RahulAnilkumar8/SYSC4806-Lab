@@ -20,5 +20,11 @@
         <td th:text="${buddy.getPhoneNumber()}"></td>
     </tr>
 </table>
+<form action="#" th:action="@{/}"  method="post">
+    <p><input type="submit" value="Create An Address Book"/></p>
+</form>
+<form action="#" th:action="@{/insertBuddyInfo/} + ${addressbook.getId()}"  method="get">
+    <p><input type="submit" value="Add A New Buddy"/></p>
+</form>
 </body>
 </html>
