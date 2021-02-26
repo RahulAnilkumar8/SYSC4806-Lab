@@ -37,7 +37,7 @@ public class AddressBookController {
         BuddyInfo buddy = new BuddyInfo();
         model.addAttribute("bookId", bookid);
         model.addAttribute("buddy", buddy);
-        return "insertBuddy";
+        return "insertbuddy";
     }
 
     /**
