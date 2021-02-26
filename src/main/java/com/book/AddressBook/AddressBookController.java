@@ -34,8 +34,9 @@ public class AddressBookController {
 
     @GetMapping("/insertBuddyInfo/{bookid}")
     public String InsertBuddyForm( @PathVariable  Long bookid, Model model) {
+        BuddyInfo buddy = new BuddyInfo();
         model.addAttribute("bookId", bookid);
-        model.addAttribute("buddy", new BuddyInfo());
+        model.addAttribute("buddy", buddy);
         return "insertBuddy";
     }
 
